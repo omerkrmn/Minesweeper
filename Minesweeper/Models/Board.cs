@@ -21,12 +21,15 @@ namespace Minesweeper.Models
         private int lengthrow;
         private int lengthcolumn;
 
+        private bool test;
+
         private int currentMineCount;
-        public Board(Difficults difficult, ControlCollection controls)
+        public Board(Difficults difficult, ControlCollection controls, bool test = false)
         {
             this.controls = controls;
             this.difficult = difficult;
-            Ceils =  new Ceil[(int)difficult, (int)difficult];
+            this.test = test;
+            Ceils = new Ceil[(int)difficult, (int)difficult];
             mineCunt = difficult.GetMineCount();
             currentMineCount = mineCunt;
             lengthrow = (int)difficult;
@@ -38,6 +41,7 @@ namespace Minesweeper.Models
             AddMineOnBoard();
             AddMineCount();
             DrawCeils();
+
         }
         private void AddMineCount()
         {
@@ -63,6 +67,8 @@ namespace Minesweeper.Models
                             {
                                 if (Ceils[newX, newY].isMine)
                                 {
+                                    if (test)
+                                        Ceils[newX, newY].btn.Text = "M";
                                     mineCount++;
                                 }
                             }
@@ -102,7 +108,7 @@ namespace Minesweeper.Models
                 }
             }
         }
-       
+
         private void AddMineOnBoard()
         {
             for (int i = 0; i < mineCunt; i++)

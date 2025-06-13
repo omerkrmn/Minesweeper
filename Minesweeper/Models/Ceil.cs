@@ -54,31 +54,31 @@ namespace Minesweeper.Models
             {
                 case MouseButtons.Left:
                     if (isMine)
-                        MessageBox.Show("Oyun Bitti Bro");
-                    Reveal(y/ApplicationConstants.BUTTON_WIDTH,x/ApplicationConstants.BUTTON_HEIGTH);
+                        MessageBox.Show("Game Over");
+                    Reveal(y / ApplicationConstants.BUTTON_WIDTH, x / ApplicationConstants.BUTTON_HEIGTH);
                     break;
                 case MouseButtons.Right:
                     DropFlag();
                     break;
             }
         }
-        private void Reveal(int x,int y) 
+        private void Reveal(int x, int y)
         {
             int width = ceils.GetLength(0);
             int height = ceils.GetLength(1);
             if (x < 0 || x >= width || y < 0 || y >= height)
                 return;
-            Ceil ceil = ceils[x,y];
+            Ceil ceil = ceils[x, y];
             if (ceil.isOpen || ceil.isMine) return;
             ceil.Open();
-            if (ceil.sizeOfAroundMine ==0)
+            if (ceil.sizeOfAroundMine == 0)
             {
                 for (int dx = -1; dx <= 1; dx++)
                 {
-                    for(int dy = -1; dy <= 1; dy++)
+                    for (int dy = -1; dy <= 1; dy++)
                     {
                         if (dx == 0 && dy == 0) continue;
-                        Reveal(dx+x, dy+y);
+                        Reveal(dx + x, dy + y);
                     }
                 }
             }
