@@ -11,7 +11,10 @@ namespace Minesweeper
         {
             InitializeComponent();
             controlCollection = Controls;
-            board = new Board(Difficults.Hard,controlCollection);
+            board = new Board(Difficults.Easy, controlCollection);
+            //board = new Board(Difficults.Medium,controlCollection);
+            //board = new Board(Difficults.Hard,controlCollection);
+
             MinimumSize = new Size(board.Ceils.GetLength(0) * 60, board.Ceils.GetLength(0) * 60);
         }
     }
